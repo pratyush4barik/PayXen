@@ -1,23 +1,18 @@
-# 1. Use Node LTS
 FROM node:20-alpine
 
-# 2. Set working directory
 WORKDIR /app
 
-# 3. Copy package files first
 COPY package*.json ./
-
-# 4. Install dependencies
 RUN npm install
 
-# 5. Copy entire project
 COPY . .
 
-# 6. Build the app (creates dist/)
+# Build step
 RUN npm run build
 
-# 7. Expose the backend port
+# 🔍 DEBUG: verify build output
+RUN ls -la dist || echo "dist folder missing"
+
 EXPOSE 5000
 
-# 8. Start production server
-CMD ["npm", "run", "start"]
+CMD ["node", "dist/index.cjs"]
