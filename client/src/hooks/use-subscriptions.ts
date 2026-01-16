@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, buildUrl } from "@shared/routes";
-import { z } from "zod";
+import { string, z } from "zod";
 import type { SubscriptionWithStats, InsertSubscription } from "@shared/schema";
 
 // Type definitions derived from schema/routes
@@ -42,7 +42,7 @@ export function useCreateSubscription() {
       // Coerce numeric types
       const payload = {
         ...data,
-        cost: Number(data.cost),
+        cost: String(data.cost),
       };
       
       const validated = api.subscriptions.create.input.parse(payload);

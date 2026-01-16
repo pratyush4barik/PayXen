@@ -39,9 +39,9 @@ export function SubscriptionDialog() {
     mutate(
       {
         name,
-        cost: Number(cost),
+        cost: cost.toString(),
         billingCycle,
-        startDate: new Date(startDate).toISOString(), // Use coerce in mutation if needed, but schema expects date obj/string
+        startDate: new Date(startDate), // Use coerce in mutation if needed, but schema expects date obj/string
         autoCancel: autoCancel === "true",
         isActive: true,
       },
